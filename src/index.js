@@ -65,11 +65,38 @@ function Menu() {
   return (
     <div>
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <ul className='pizzas'>
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+      {/* <Pizza
+        name='Pizza Spinaci'
+        ingredients='Tomato, mozarella, ham, aragula, and burrata cheese'
+        photoName='pizzas/spinaci.jpg'
+        price='10'
+      />
+
+      <Pizza
+        name='Pizza Funghi'
+        ingredients='Tomato, mushrooms'
+        price='5'
+        photoName='pizzas/funghi.jpg'
+      /> */}
     </div>
+  )
+}
+
+function Pizza(props) {
+  return (
+    <li className='pizza'>
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
+      <div>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
+      </div>
+    </li>
   )
 }
 
@@ -86,15 +113,7 @@ function Footer() {
     </footer>
   )
 }
-function Pizza() {
-  return (
-    <div>
-      <img src='pizzas/spinaci.jpg' alt='pizza spinaci'></img>
-      <h3>Pizza Prosciutto</h3>
-      <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-    </div>
-  )
-}
+
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>
